@@ -1,17 +1,4 @@
-export interface CustomCoin {
-    network: "Eth" | "Btc" | "Bnb",
-    contractUrl: string
-}
-
-export type Alumno = {
+export type Forma = {
     nombre: string,
-    apellido: string,
-    edad: number,
-    esDesarrollador?: boolean
+    area: number
 }
-
-export type Artista = {
-    pintura: "Óleo" | "Acrílico" | "Spray"
-}
-
-export type AlumnoArtista = Alumno & Artista
