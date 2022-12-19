@@ -1,6 +1,8 @@
-import { alumno } from "./controllers/alumnosController"
-// Ctrl + ç => comentar/descomentar
+import { CustomCoin } from "./models";
 
-console.log("Hola!")
-// console.log("Nombre del alumno: " + alumno.nombre + ", edad: " + alumno.edad)
-console.log(`Nombre del alumno: ${alumno.nombre}, edad: ${alumno.edad}`)
+const miMoneda: CustomCoin = {
+    network: "Bnb",
+    contractUrl: "cualquiercosa"
+}
+
+console.log(miMoneda)

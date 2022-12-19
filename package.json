@@ -4,6 +4,7 @@
   "description": "Este es el primer proyecto de typescript",
   "main": "index.js",
   "scripts": {
+    "start": "node dist/index.js",
     "dev": "tsc --watch",
     "compile": "tsc"
   },
