@@ -1,4 +1,4 @@
-import chalk from "chalk"
+// import chalk from "chalk"
 
 // {
 //      Primero -> Librería para obtener datos del usuario (input)
@@ -41,11 +41,12 @@ function devuelveEdadBetter(edad: number): string {
     return "Mayor"
 }
 
-console.log(devuelveEdadBetter(12))
+console.log(devuelveEdadBetter(22))
 
 type Nota = 0 | 1 | 2 | 3 | 4 | 5
 
 function devuelveNota(nota: Nota): string {
+    console.time("devolucionNota")
     let stringNota: string
     switch(nota) {
         case (0) :
@@ -70,6 +71,10 @@ function devuelveNota(nota: Nota): string {
             stringNota = "No has pasado bien la nota"
             break
     }
+    for (let i = 0; i < 10000000; i++) {
+        let a = true
+    }
+    console.timeEnd("devolucionNota")
     return stringNota
 }
 
@@ -97,6 +102,8 @@ const students: Student[] = [
         isDeveloper: true
     }
 ]
+
+console.table(students)
 
 for (let i = 0; i < students.length; i++) {
     if (students[i].age < 23) continue
@@ -138,3 +145,16 @@ const sumAllTheAges: number = students.reduce((acc: number, student: Student) =>
 }, 0)
 
 console.log({ sumAllTheAges })
+
+const validation: boolean = false
+
+function checkValidation(val: boolean) {
+    if (val) return console.log("Está correcto")
+    console.error("Ha fallado la validación")
+}
+
+checkValidation(validation)
+
+console.warn("Cuidado! Que la validación ha fallado")
+
+console.assert(students.length < 10, "Cuidado, los estudiantes son menos que 10")
