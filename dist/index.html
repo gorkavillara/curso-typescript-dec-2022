@@ -26,8 +26,20 @@
             </ul>
             <button id="clear-list">Limpiar lista de tareas</button>
         </div>
+        <button id="new-db-task">Añade tarea nueva</button>
+        <button id="log-tasks">Muestra tareas en el log</button>
+        <div>
+            <input type="text" id="task-update" placeholder="Nueva tarea">
+            <input type="number" id="task-id-update" placeholder="Id de la tarea a modificar">
+            <button id="task-update-button">Actualizar</button>
+        </div>
+        <div>
+            <input type="number" id="task-id-delete" placeholder="Id de la tarea a eliminar">
+            <button id="task-delete-button">Eliminar</button>
+        </div>
     </main>
     <script src="index.js"></script>
     <script src="tasks.js"></script>
+    <script src="idb.js"></script>
 </body>
 </html>
