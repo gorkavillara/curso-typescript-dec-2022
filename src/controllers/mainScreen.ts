@@ -28,13 +28,16 @@ const getUserName = async (): Promise<string> => {
   return question.user_name;
 };
 
+interface IPromptOption {
+  option_selected: string
+}
 const showOptions = async (): Promise<boolean> => {
-  const options = await inquirer.prompt({
+  const { option_selected }: IPromptOption = await inquirer.prompt({
     message: "Qué te gustaría hacer",
     name: "option_selected",
     type: "list",
     choices,
   });
-  if (options.option_selected === "e. SALIR") return false
+  if (option_selected === "e. SALIR") return false
   return true
 };
