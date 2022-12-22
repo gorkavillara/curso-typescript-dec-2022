@@ -11,12 +11,22 @@
     <main>
         <h1>Persistencia de datos</h1>
         <div class="formulario">
-            <form method="post" action="#" id="login-form">
+            <form method="get" action="#" id="login-form">
                 <input type="text" name="nombre" placeholder="Tu Nombre" />
-                <button>Enviar</button>
+                <button type="submit">Enviar</button>
             </form>
+        </div>
+        <div class="tareas hidden">
+            <h3>Lista de tareas</h3>
+            <form action="#" method="get" id="tasks-form">
+                <input type="text" name="newtask" id="newtask-input" />
+                <button type="submit">Enviar</button>
+            </form>
+            <ul id="tasks-list">
+            </ul>
         </div>
     </main>
     <script src="index.js"></script>
+    <script src="tasks.js"></script>
 </body>
 </html>
