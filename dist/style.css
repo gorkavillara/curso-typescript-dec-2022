@@ -46,3 +46,9 @@ span.hello {
     font-size: 1.5rem;
     color: white;
 }
+
+div.tareas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
