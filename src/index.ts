@@ -29,6 +29,12 @@ class Student { // Creación de una clase
         this.favoriteLanguage = nfl
         this.isDeveloper = true
     }
+
+    static whatIs() {
+        return "La clase Student instancia objetos de tipo Student"
+    }
+
+    static explain: string = "La clase Student instancia objetos de tipo Student"
 }
 
 const newStudent: Student = new Student("Ismael", 22, "Typescript", false) // Instanciar una clase
@@ -39,3 +45,6 @@ console.log(newStudent.nameAndAge)
 // newStudent.newFavoriteLanguage("Vue3")
 console.log(newStudent.isDeveloper)
 console.log(newStudent.getFavoriteLanguage())
+
+console.log(Student.explain)
+console.log(Student.whatIs())

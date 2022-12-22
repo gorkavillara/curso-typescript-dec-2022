@@ -23,7 +23,11 @@ class Student {
         this.favoriteLanguage = nfl;
         this.isDeveloper = true;
     }
+    static whatIs() {
+        return "La clase Student instancia objetos de tipo Student";
+    }
 }
+Student.explain = "La clase Student instancia objetos de tipo Student";
 const newStudent = new Student("Ismael", 22, "Typescript", false); // Instanciar una clase
 newStudent.newFavoriteLanguage = "Vue3";
 // console.log(newStudent.nameAndAge())
@@ -31,4 +35,6 @@ console.log(newStudent.nameAndAge);
 // newStudent.newFavoriteLanguage("Vue3")
 console.log(newStudent.isDeveloper);
 console.log(newStudent.getFavoriteLanguage());
+console.log(Student.explain);
+console.log(Student.whatIs());
 //# sourceMappingURL=index.js.map
