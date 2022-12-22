@@ -37,14 +37,24 @@ class Student { // Creación de una clase
     static explain: string = "La clase Student instancia objetos de tipo Student"
 }
 
-const newStudent: Student = new Student("Ismael", 22, "Typescript", false) // Instanciar una clase
-newStudent.newFavoriteLanguage = "Vue3"
-// console.log(newStudent.nameAndAge())
+class GradStudent extends Student {
+    grade: number
+
+    constructor(n: string, a: number, grade: number, fl?: string, isDev?: boolean) {
+        super(n, a, fl, isDev)
+        this.grade = grade
+    }
+
+    get nameAndAge() {
+        return `${this.name}, is ${this.age} years old, and obtained ${this.grade} points at the exam`
+    }
+}
+
+const newStudent = new Student("Sergio", 21, "C#", true)
+const newGradStudent = new GradStudent("Ernesto", 29, 10, "Typescript", true)
+
 console.log(newStudent.nameAndAge)
+console.log(newGradStudent.nameAndAge)
 
-// newStudent.newFavoriteLanguage("Vue3")
-console.log(newStudent.isDeveloper)
-console.log(newStudent.getFavoriteLanguage())
-
-console.log(Student.explain)
-console.log(Student.whatIs())
+console.log(newStudent)
+console.log(newGradStudent)
