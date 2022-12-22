@@ -1,6 +1,7 @@
 import chalk from "chalk";
-import inquirer, { PromptModule, Answers } from "inquirer";
+import inquirer from "inquirer";
 import { choices } from "../assets/index.js";
+import { Client } from "../models/index.js";
 
 export const mainScreen = async (): Promise<void> => {
   let loop: boolean = true;
@@ -38,6 +39,18 @@ const showOptions = async (): Promise<boolean> => {
     type: "list",
     choices,
   });
-  if (option_selected === "e. SALIR") return false
+
+  const resId = choices.indexOf(option_selected)
+  if (resId === 0) return await listClients()
+  if (resId === 4) return false
+
   return true
 };
+
+const listClients = async(): Promise<true> => {
+  const { clientes: clients } = await Client.getAllClients()
+  clients
+    .map((client: Client) => `Name: ${client.nombre}, Email: ${client.email}`)
+    .forEach((clientStr: string) => console.log(clientStr))
+  return true
+}
