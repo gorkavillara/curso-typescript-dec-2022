@@ -1,4 +1,4 @@
-import { mainScreen } from "./controllers/mainScreen.js";
+import { mainScreen } from './controllers/mainScreen.js'
 
 /*
 1 - Bienvenida

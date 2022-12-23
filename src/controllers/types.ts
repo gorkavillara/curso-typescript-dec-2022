@@ -1,9 +1,7 @@
-import { choices } from "../assets";
+import { choices } from '../assets'
 
-const choicesForType = [...choices] as const
+type Choice = typeof choices[number]
 
-type Choice = typeof choicesForType[number]
-
-const miChoice: Choice = ""
+const miChoice: Choice = ''
 
 console.log(miChoice)
