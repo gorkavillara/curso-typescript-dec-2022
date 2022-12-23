@@ -1,5 +1,9 @@
+/* eslint-disable capitalized-comments */
+
 import chalk from 'chalk'
 import inquirer from 'inquirer'
+import { createSpinner } from 'nanospinner'
+
 import { choices } from '../assets/index.js'
 import { Client } from '../models/index.js'
 
@@ -8,10 +12,10 @@ export const mainScreen = async (): Promise<void> => {
 	// Dar la bienvenida
 	sayHello()
 	// Preguntar el nombre
-	const username = await getUserName() // eslint-disable-line
+	const username: string = await getUserName()
 	while (loop) {
 		// Mostrar las opciones
-		loop = await showOptions()
+		loop = await showOptions(username)
 	}
 }
 
@@ -32,25 +36,70 @@ const getUserName = async (): Promise<string> => {
 interface IPromptOption {
 	optionSelected: string
 }
-const showOptions = async (): Promise<boolean> => {
+const showOptions = async (name: string): Promise<boolean> => {
 	const { optionSelected }: IPromptOption = await inquirer.prompt({
-		message: 'Qué te gustaría hacer',
+		message: `Hola ${name}, qué te gustaría hacer`,
 		name: 'optionSelected',
 		type: 'list',
 		choices,
 	})
 
 	const resId = choices.indexOf(optionSelected)
+	// const optionsArray: any[] = [await listClients(), await createClient(), true, true, false]
+	// return optionsArray[resId]
 	if (resId === 0) return await listClients()
+	if (resId === 1) return await createClient()
+	if (resId === 2) return true
+	if (resId === 3) return true
 	if (resId === 4) return false
-
-	return true
+	return false
 }
 
 const listClients = async (): Promise<true> => {
+	// Inicia el spinner
+	const spinnerNormal = createSpinner('Fetching clients...')
+	spinnerNormal.start()
+
 	const { clientes: clients } = await Client.getAllClients()
 	clients
-		.map((client: Client) => `Name: ${client.nombre}, Email: ${client.email}`)
+		.map(
+			(client: Client, index: number) =>
+				`\n${index + 1}. Name: ${client.nombre}, Email: ${client.email}`,
+		)
 		.forEach((clientStr: string) => console.log(clientStr))
+
+	spinnerNormal.success({ text: 'Clients successfully retrieved' })
+	// Finaliza el spinner
+	return true
+}
+
+const createClient = async (): Promise<true> => {
+	// Mostrar el prompt de crear nuevo cliente
+	const responses = await inquirer.prompt([
+		{
+			message: 'Client\'s name',
+			name: 'clientName',
+			default: 'Mario Casas',
+		}, {
+			message: 'Client\'s email',
+			name: 'clientEmail',
+			default: 'mario@casas.net',
+		}, {
+			message: 'Client\'s address',
+			name: 'clientAddress',
+			default: 'Casa 12',
+		}, {
+			message: 'Client\'s number',
+			name: 'clientNumber',
+			default: '666 10 10 10',
+		},
+	])
+	const spinnerCreating = createSpinner('Creating clients...')
+	spinnerCreating.start()
+	const { clientName, clientEmail, clientAddress, clientNumber } = responses
+	// Con la info del prompt hacer una llamada con axios
+	const newClient = new Client(clientName, clientAddress, clientEmail, clientNumber)
+	const resMsg: string = await newClient.pushClient()
+	spinnerCreating.success({ text: resMsg })
 	return true
 }

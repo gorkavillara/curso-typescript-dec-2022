@@ -7,8 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import axios from "axios";
-const endpointUrl = "https://us-central1-fir-api-a3355.cloudfunctions.net/app/api/clientes";
+/* eslint-disable */
+import axios from 'axios';
+const endpointUrl = 'https://us-central1-fir-api-a3355.cloudfunctions.net/app/api/clientes';
 export class Client {
     constructor(n, d, e, num) {
         this.nombre = n;
@@ -16,11 +17,25 @@ export class Client {
         this.email = e;
         this.numero_telefono = num;
     }
-    // método estático con axios => 
+    // método estático con axios =>
     static getAllClients() {
         return __awaiter(this, void 0, void 0, function* () {
             const { data } = yield axios.get(endpointUrl);
             return data;
+        });
+    }
+    pushClient() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const res = yield axios.post(endpointUrl, {
+                action: 'nuevoCliente',
+                cliente: {
+                    nombre: this.nombre,
+                    email: this.email,
+                    direccion: this.direccion,
+                    numero: this.numero_telefono
+                }
+            });
+            return res.data.message;
         });
     }
 }
