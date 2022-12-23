@@ -20,5 +20,6 @@ module.exports = {
 		'no-await-in-loop': ['off'],
 		'no-return-await': ['off'],
 		curly: ['off'],
+		camelcase: ['off'],
 	},
 }

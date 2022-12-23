@@ -38,4 +38,23 @@ export class Client {
             return res.data.message;
         });
     }
+    static deleteClient(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const res = yield axios.post(endpointUrl, {
+                action: 'eliminaCliente',
+                id
+            });
+            return res.data.message;
+        });
+    }
+    static updateClient(id, cliente) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const res = yield axios.post(endpointUrl, {
+                action: 'actualizaCliente',
+                id,
+                cliente
+            });
+            return res.data.message;
+        });
+    }
 }

@@ -4,6 +4,14 @@ import axios from 'axios'
 const endpointUrl: string =
 	'https://us-central1-fir-api-a3355.cloudfunctions.net/app/api/clientes'
 
+export interface FirebaseClient {
+	nombre: string
+	email: string
+	direccion: string
+	numero_telefono: string
+	id: string
+}
+
 export class Client {
 	nombre: string
 	direccion: string
@@ -35,4 +43,21 @@ export class Client {
         })
         return res.data.message
     }
+
+	static async deleteClient(id: string) {
+		const res = await axios.post(endpointUrl, {
+            action: 'eliminaCliente',
+            id
+        })
+        return res.data.message
+	}
+
+	static async updateClient(id: string, cliente: FirebaseClient) {
+		const res = await axios.post(endpointUrl, {
+            action: 'actualizaCliente',
+            id,
+			cliente
+        })
+        return res.data.message
+	}
 }
